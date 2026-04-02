@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { db, Order } from '@/lib/supabase'
-import { Eye, Edit, Trash2, X, Check } from 'lucide-react'
+import { db } from '@/lib/supabase'
+import type { Order } from '@/lib/supabase'
+import { Eye, Edit, Trash2, X } from 'lucide-react'
 
 const statusLabels: Record<string, { label: string; color: string }> = {
   pending: { label: '待处理', color: 'bg-yellow-100 text-yellow-700' },
@@ -39,7 +40,7 @@ export default function Orders() {
     try {
       await db.updateOrderStatus(
         selectedOrder.id,
-        editData.status,
+        editData.status as Order['status'],
         editData.quote_price,
         editData.notes
       )

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { getCompanyInfo, CompanyInfo } from '@/lib/supabase'
+import { getCompanyInfo } from '@/lib/supabase'
+import type { CompanyInfo } from '@/lib/supabase'
 
 export function useCompanyInfo(sectionKey?: string) {
   const [info, setInfo] = useState<CompanyInfo | CompanyInfo[] | null>(null)

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { db, Product, GalleryItem, Order } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
 import { Package, Image, ClipboardList, TrendingUp } from 'lucide-react'
 
 interface Stats {

@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
@@ -136,13 +136,12 @@ export const db = {
     return data as Order[]
   },
 
-  async updateOrderStatus(id: string, status: string, quote_price?: string, notes?: string) {
+  async updateOrderStatus(id: string, status: Order['status'], quote_price?: string, notes?: string) {
     const updateData: Partial<Order> = { status }
     if (quote_price) updateData.quote_price = quote_price
     if (notes) updateData.notes = notes
-    const { data, error } = await supabase.from('orders').update(updateData).eq('id', id).select().single()
+    const { error } = await supabase.from('orders').update(updateData).eq('id', id).select().single()
     if (error) throw error
-    return data as Order
   },
 
   async deleteOrder(id: string) {
@@ -154,7 +153,7 @@ export const db = {
 // 文件上传
 export async function uploadImage(file: File, folder: string = 'products') {
   const fileName = `${folder}/${Date.now()}-${file.name}`
-  const { data, error } = await supabase.storage.from('images').upload(fileName, file)
+  const { error } = await supabase.storage.from('images').upload(fileName, file)
   if (error) throw error
   
   const { data: { publicUrl } } = supabase.storage.from('images').getPublicUrl(fileName)

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { getGalleryItems, GalleryItem } from '@/lib/supabase'
+import { getGalleryItems } from '@/lib/supabase'
+import type { GalleryItem } from '@/lib/supabase'
 
 export function useGallery(category?: string) {
   const [items, setItems] = useState<GalleryItem[]>([])

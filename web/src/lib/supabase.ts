@@ -112,17 +112,18 @@ export async function getGalleryItems(category?: string) {
   return data as GalleryItem[]
 }
 
-export async function getCompanyInfo(sectionKey?: string) {
-  let query = supabase.from('company_info').select('*')
-  
+export async function getCompanyInfo(sectionKey?: string): Promise<CompanyInfo | CompanyInfo[]> {
   if (sectionKey) {
-    query = query.eq('section_key', sectionKey).single()
-    const { data, error } = await query
+    const { data, error } = await supabase
+      .from('company_info')
+      .select('*')
+      .eq('section_key', sectionKey)
+      .single()
     if (error) throw error
     return data as CompanyInfo
   }
   
-  const { data, error } = await query
+  const { data, error } = await supabase.from('company_info').select('*')
   if (error) throw error
   return data as CompanyInfo[]
 }

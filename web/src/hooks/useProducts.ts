@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { getProducts, Product } from '@/lib/supabase'
+import { getProducts } from '@/lib/supabase'
+import type { Product } from '@/lib/supabase'
 
 export function useProducts(category?: string) {
   const [products, setProducts] = useState<Product[]>([])

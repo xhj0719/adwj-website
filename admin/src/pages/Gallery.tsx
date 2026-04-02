@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { db, GalleryItem } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import type { GalleryItem } from '@/lib/supabase'
 import { Plus, Edit, Trash2 } from 'lucide-react'
 
 const categories = ['私宅', '商业', '餐饮', '酒店', '艺术空间', '展厅']

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { db, Product } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import type { Product } from '@/lib/supabase'
 import { Plus, Edit, Trash2, X, Check } from 'lucide-react'
 
 const categories = ['b2b', 'c2c']

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { db, CompanyInfo } from '@/lib/supabase'
+import { db } from '@/lib/supabase'
+import type { CompanyInfo } from '@/lib/supabase'
 import { Save } from 'lucide-react'
 
 export default function CompanyInfo() {
